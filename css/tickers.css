@@ -1,0 +1,12 @@
+body { font-family: 'Sansita', sans-serif }
+
+#board { width: 400px }
+td { width: 20px }
+p { cursor: pointer }
+
+.endofgame-message { 
+	color: red;
+	margin: 15px 0;
+}
+
+.xScore, .oScore { color: red }

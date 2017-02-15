@@ -2,126 +2,27 @@
 <html>
 <head>
 	<title>Ticktacktoe</title>
-
-
-	<style>
-		
-		#board { width: 400px }
-		td { width: 20px }
-		p { cursor: pointer }
-	</style>
-
+	<link rel="stylesheet" type="text/css" href="css/tickers.css">
+	<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
 </head>
 <body>
 
+	<h3>Ticktacktoe</h3>
+
 	<div id="board"></div>
-	<p onclick="reloadGame()">Reload Game ></p>
+	<div class="endofgame-message"></div>
+	<p class="reload-btn" onclick="reloadGame()">Reload Game ></p>
 
 	<hr>
 
 	<h4>Scores</h4>
 	<table border="1" cellpadding="4" cellspacing="2">
 		<tr><td>X</td><td>O</td></tr>
-		<tr><td class="xScore">&nbsp;</td><td class="oScore">&nbsp;</td></tr>
+		<tr><td class="xScore">0</td><td class="oScore">0</td></tr>
 	</table>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script>
-
-		var board = document.getElementById('board');
-		var icon = "x";
-		var iconCounter = 1;
-		var xVals = [];
-		var oVals = [];
-
-		var drawBoard = function () {
-			var html = "<table border='1' cellpadding='4' cellspacing='1'>";
-			for(var i=0;i <= 2 ;i++){
-				html += "<tr class='row-"+i+"'>";
-				for(var j = 0;j <= 2;j++){
-					html += "<td class='cell-"+j+"' onclick='changeText(this)'>&nbsp;</td>";
-				}
-				html += "</tr>";
-			}
-			html += "</table>";
-			board.innerHTML = html;
-		}	
-
-		window.load = drawBoard();
-
-		var reloadGame = function() { location.reload() }
-
-		var changeText = function(td){
-			var getRowClassVal = $(td).parent().attr("class");
-			var getCellClassVal = $(td).attr("class").replace("cell-","");
-			var passRowVal = getRowClassVal+getCellClassVal;
-			iconCounter++;
-			td.innerHTML = icon;
-			iconCounter % 2 ? icon = "x" : icon = "o"
-
-			var getThisCellVal = $(td).text();
-
-			if(getThisCellVal === "x"){ 
-				xVals.push(passRowVal); 
-				checkforthewin(xVals,"X");
-			} else { 
-				oVals.push(passRowVal);
-				checkforthewin(oVals,"O");
-			}
-		}
-
-		var checkforthewin = function(array,player){
-
-			// check if nobody won
-			$("#board table td").each(function(k,v){
-				console.log(this.text())
-			});
-
-			var player = player;
-
-			/* WINNING PATTERNS, if:
-				
-				1
-				row-00,row-01,row-02
-				row-10,row-11,row-12
-				row-20,row-21,row-22
-		
-				2
-				row-00,row-10,row-20
-				row-01,row-11,row-21
-				row-02,row-12,row-22
-
-				3
-				row-00,row-11,row-22
-				row-02,row-11,row-20
-
-			*/
-
-			var message = function(){
-				alert("Player "+player+" WINS!!! :D");
-			}
-
-			if(array.length <= 3){
-				if(array.indexOf("row-00") > -1 && array.indexOf("row-01") > -1 && array.indexOf("row-02") > -1) {
-					message();
-				} else if(array.indexOf("row-10") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-12") > -1) {
-					message()
-				} else if(array.indexOf("row-20") > -1 && array.indexOf("row-21") > -1 && array.indexOf("row-22") > -1) {
-					message()
-				} else if(array.indexOf("row-00") > -1 && array.indexOf("row-10") > -1 && array.indexOf("row-20") > -1) {
-					message()
-				} else if(array.indexOf("row-01") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-21") > -1) {
-					message()
-				} else if(array.indexOf("row-02") > -1 && array.indexOf("row-12") > -1 && array.indexOf("row-22") > -1) {
-					message()
-				} else if(array.indexOf("row-00") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-22") > -1) {
-					message()
-				} else if(array.indexOf("row-02") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-20") > -1) {
-					message()
-				}
-			} else { array.shift() }
-		}
-	</script>
+	<script src="js/main.js"></script>
 
 </body>
 </html>
