@@ -97,23 +97,18 @@ var checkforthewin = function(array,player){
 		reloadGame();
 	}
 
+	var checkPattern = function(v1,v2,v3){
+		return array.indexOf(v1) > -1 && array.indexOf(v2) > -1 && array.indexOf(v3) > -1
+	}
+
 	if(array.length <= 3){
-		if(array.indexOf("row-00") > -1 && array.indexOf("row-01") > -1 && array.indexOf("row-02") > -1) {
-			message();
-		} else if(array.indexOf("row-10") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-12") > -1) {
-			message()
-		} else if(array.indexOf("row-20") > -1 && array.indexOf("row-21") > -1 && array.indexOf("row-22") > -1) {
-			message()
-		} else if(array.indexOf("row-00") > -1 && array.indexOf("row-10") > -1 && array.indexOf("row-20") > -1) {
-			message()
-		} else if(array.indexOf("row-01") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-21") > -1) {
-			message()
-		} else if(array.indexOf("row-02") > -1 && array.indexOf("row-12") > -1 && array.indexOf("row-22") > -1) {
-			message()
-		} else if(array.indexOf("row-00") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-22") > -1) {
-			message()
-		} else if(array.indexOf("row-02") > -1 && array.indexOf("row-11") > -1 && array.indexOf("row-20") > -1) {
-			message()
-		}
-	} else { array.shift() }
+		if     (checkPattern("row-00","row-01","row-02")) { message() } 
+		else if(checkPattern("row-10","row-11","row-12")) { message() } 
+		else if(checkPattern("row-20","row-21","row-22")) { message() } 
+		else if(checkPattern("row-00","row-10","row-20")) { message() } 
+		else if(checkPattern("row-01","row-11","row-21")) { message() } 
+		else if(checkPattern("row-02","row-12","row-22")) { message() } 
+		else if(checkPattern("row-00","row-11","row-22")) { message() } 
+		else if(checkPattern("row-02","row-11","row-20")) { message() }
+	}   else { array.shift() }
 }
